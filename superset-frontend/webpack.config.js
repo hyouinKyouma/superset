@@ -41,6 +41,7 @@ const BUILD_DIR = path.resolve(__dirname, '../superset/static/assets');
 const {
   mode = 'development',
   devserverPort = 9000,
+  devserverhost = '0.0.0.0',
   measure = false,
   analyzeBundle = false,
   analyzerPort = 8888,
@@ -153,7 +154,7 @@ if (isDevMode) {
   // otherwise the websocket client will initialize twice, creating two sockets.
   // Ref: https://github.com/gaearon/react-hot-loader/issues/141
   PREAMBLE.unshift(
-    `webpack-dev-server/client?http://localhost:${devserverPort}`,
+    `webpack-dev-server/client?http://${devserverhost}:${devserverPort}`,
   );
 }
 
@@ -441,6 +442,7 @@ if (isDevMode) {
     stats: 'minimal',
     overlay: true,
     port: devserverPort,
+    host:devserverhost,
     // Only serves bundled files from webpack-dev-server
     // and proxy everything else to Superset backend
     proxy: [

@@ -21,8 +21,8 @@ const zlib = require('zlib');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const parsedArgs = require('yargs').argv;
 
-const { supersetPort = 8088, superset: supersetUrl = null } = parsedArgs;
-const backend = (supersetUrl || `http://localhost:${supersetPort}`).replace(
+const { supersetPort = 8088, supersetHost = '0.0.0.0', superset: supersetUrl = null } = parsedArgs;
+const backend = (supersetUrl || `http://${supersetHost}:${supersetPort}`).replace(
   '//+$/',
   '',
 ); // strip ending backslash
